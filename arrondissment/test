@@ -1,0 +1,2 @@
+sed 's/,/ /g' paris
+sed 's/[//g' paris

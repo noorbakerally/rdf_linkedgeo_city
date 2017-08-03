@@ -1,0 +1,17 @@
+PREFIX lgdo: <http://linkedgeodata.org/ontology/> 
+Prefix geom: <http://geovocab.org/geometry#>
+Prefix ogc:<http://www.opengis.net/ont/geosparql#>
+CONSTRUCT { 
+  ?s ?p ?o .
+  ?s geom:geometry ?geometry .
+  ?geometry ogc:asWKT ?g .
+
+} WHERE 
+{ ?s ?p ?o .
+  ?s a ?type;
+     geom:geometry ?geometry .
+  ?geometry  ogc:asWKT ?g .
+  Filter(bif:st_intersects (?g, bif:st_geomfromtext ( "POLYGON((7.791275 48.642646,7.738747 48.601796,7.716774 48.609061,7.687248 48.600434,7.693428 48.556369,7.751793 48.536595,7.749390 48.490881,7.803978 48.492929,7.811874 48.512720,7.807754 48.572727,7.842806 48.634037,7.817901 48.638624,7.812593 48.650224,7.791275 48.642646))" ))) . 
+  Filter (?type in (lgdo:ParkingPosition,lgdo:BicycleParking,lgdo:BicycleRental,lgdo:Parking,lgdo:ParkingEntrace,lgdo:ParkingSpace,lgdo:Airport,lgdo:ATM,lgdo:Atm,lgdo:Bank,lgdo:BusStation,lgdo:BusStop,lgdo:TramStation,lgdo:TramStop
+))
+}
